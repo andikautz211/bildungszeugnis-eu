@@ -74,4 +74,15 @@
   });
   document.addEventListener('visibilitychange', function () { if (!document.hidden) laden(); });
   monitorSetzen(monitor);
+
+  // Weitersagen: Teilen-Menü des Handys, sonst WhatsApp-Link (keine Fremd-Skripte)
+  var teilenText = 'Wie viel Unterricht fällt an Euskirchener Schulen wirklich aus? Eltern melden ausgefallene Stunden anonym und ohne Anmeldung. Bitte mitmachen und weitersagen:';
+  var teilenUrl = location.origin + location.pathname.replace(/index\.html$/, '') + 'melden.html';
+  document.getElementById('teilen').addEventListener('click', function () {
+    if (navigator.share) {
+      navigator.share({ title: document.title, text: teilenText, url: teilenUrl }).catch(function () {});
+    } else {
+      window.open('https://wa.me/?text=' + encodeURIComponent(teilenText + ' ' + teilenUrl), '_blank', 'noopener');
+    }
+  });
 })();

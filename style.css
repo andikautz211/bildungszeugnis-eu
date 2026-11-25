@@ -163,3 +163,10 @@ mark.platzhalter { background: #ffe58a; color: #1b1f24; padding: 0 .2em; border-
 .app-hinweis { margin-top: 20px; background: var(--flaeche); border: 1px solid var(--linie); border-radius: 10px; padding: 12px 14px; }
 .app-hinweis summary { font-weight: 700; cursor: pointer; }
 .app-hinweis ol { padding-left: 1.2rem; margin: .5rem 0; }
+
+/* Weitersagen */
+.weitersagen { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.knopf-zweit { display: flex; align-items: center; justify-content: center; text-align: center; padding: 12px 10px; border-radius: 12px;
+  border: 1.5px solid var(--akzent); background: var(--flaeche); color: var(--akzent); font: inherit; font-weight: 700; font-size: .95rem;
+  text-decoration: none; cursor: pointer; line-height: 1.25; }
+.knopf-zweit:hover { background: var(--bg); }
