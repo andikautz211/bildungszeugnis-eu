@@ -3,8 +3,8 @@
 // öffentlich gedacht: Er erlaubt nur die vier freigegebenen Funktionen.
 // Den "secret"/"service_role"-Schlüssel NIEMALS hier eintragen.
 window.CONFIG = {
-  SUPABASE_URL: 'https://DEIN-PROJEKT.supabase.co',
-  SUPABASE_KEY: 'DEIN-PUBLISHABLE-KEY',
+  SUPABASE_URL: 'https://qvucgmxwjtlllxvrqqde.supabase.co',
+  SUPABASE_KEY: 'sb_publishable_Q67efZ1voSNZtzFm2Z2Nhw_Q7BUm0Eo',
   TITEL: 'Fehlstunden-Check Euskirchen',
   KONTAKT: 'kontakt@example.org'
 };
