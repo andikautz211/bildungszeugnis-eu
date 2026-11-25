@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://*.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#1f4e79">
-<title>Datenschutz & Impressum</title>
+<title>Datenschutzerklärung</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -16,30 +16,54 @@
 <body class="seite-text">
 <header class="kopf"><a href="./" class="marke" data-titel></a>
 <nav><a href="./">Dashboard</a><a href="melden.html" class="knopf-klein">Stunde melden</a></nav></header>
-<main>
-<h1>Datenschutz &amp; Impressum</h1>
-<p class="hinweis"><strong>Entwurf:</strong> Platzhalter. Muss vor dem Start ergänzt und geprüft werden (Impressum nach § 5 DDG, Datenschutzerklärung nach Art. 13 DSGVO).</p>
-<h2>Was gespeichert wird</h2>
+<main class="text">
+<h1>Datenschutzerklärung</h1>
+<p>Stand: November 2026</p>
+
+<h2>1. Kurz gesagt</h2>
 <ul>
-  <li>Schule, Klasse, Datum, Unterrichtsstunde, Fach und Art des Ausfalls.</li>
-  <li>Eine zufällige, anonyme Gerätekennung aus dem Speicher Ihres Browsers, damit dieselbe Stunde vom selben Gerät nicht mehrfach gezählt wird. In der Datenbank liegt davon nur ein verschlüsselter Hash.</li>
-  <li>Ihre zuletzt gewählte Schule und Klasse werden nur im Speicher Ihres eigenen Browsers gemerkt.</li>
-  <li>Zur Begrenzung von Massen-Einträgen wird aus der IP-Adresse ein Tages-Hash gebildet (die IP-Adresse selbst wird nicht gespeichert). Dieser Hash wird nach spätestens zwei Tagen automatisch gelöscht.</li>
+  <li>Sie melden anonym. Wir fragen keine Namen, keine E-Mail-Adresse und kein Konto ab.</li>
+  <li>Wir setzen keine Cookies, kein Tracking und keine Analyse- oder Werbedienste ein und laden keine fremden Schriften oder Skripte.</li>
+  <li>Gespeichert werden Schule, Klasse, Datum, Stunde, Fach und Art des Ausfalls sowie technische Kennungen, die nur als nicht umkehrbarer Hash vorliegen und automatisch gelöscht bzw. anonymisiert werden.</li>
+  <li>Veröffentlicht werden ausschließlich zusammengefasste Zahlen. Fächer werden nie zusammen mit einer Klasse gezeigt.</li>
 </ul>
-<h2>Was nicht gespeichert wird</h2>
+
+<h2>2. Verantwortlicher</h2>
+<p>Andreas Kautz<br>In den Seebenden 61<br>53879 Euskirchen<br>E-Mail: <a href="mailto:andi@kautz-online.com">andi@kautz-online.com</a></p>
+<p>Ein Datenschutzbeauftragter ist nicht benannt, da keine gesetzliche Pflicht besteht.</p>
+
+<h2>3. Aufruf der Webseite (Hosting durch GitHub Pages)</h2>
+<p>Die Seiten werden über GitHub Pages ausgeliefert, einen Dienst der GitHub B.V. bzw. GitHub, Inc. (88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA). Beim Aufruf verarbeitet GitHub technisch notwendig Ihre IP-Adresse und Angaben zum Browser, um die Seite auszuliefern und die Sicherheit des Dienstes zu gewährleisten; dabei können Protokolle entstehen. Wir selbst erhalten diese Daten nicht.</p>
+<p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren und zuverlässigen Bereitstellung der Webseite). Eine Übermittlung in die USA ist möglich; GitHub ist nach dem EU-US Data Privacy Framework zertifiziert (Angemessenheitsbeschluss der EU-Kommission, Art. 45 DSGVO). Weitere Informationen: GitHub Privacy Statement (docs.github.com/site-policy/privacy-policies/github-general-privacy-statement).</p>
+
+<h2>4. Abgabe einer Meldung (Datenbank bei Supabase)</h2>
+<p>Die Meldungen werden in einer Datenbank der Supabase, Inc. (970 Toa Payoh North #07-04, Singapur 318992) gespeichert, die in einem Rechenzentrum in Frankfurt am Main (EU) betrieben wird. Mit Supabase besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO. Soweit Supabase für Support oder Betrieb Zugriff aus Drittländern hat, erfolgt dies auf Grundlage von EU-Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO).</p>
+<p>Bei einer Meldung verarbeiten wir:</p>
 <ul>
-  <li>Keine Namen von Lehrkräften, Schülerinnen und Schülern oder Eltern. Das einzige freie Feld (Fach) lässt nur kurze Fachnamen zu und wird öffentlich nur als „Sonstiges“ gezählt.</li>
-  <li>Keine IP-Adressen in der Datenbank, keine Cookies, keine Tracking- oder Analysedienste, keine externen Schriften.</li>
+  <li><strong>Meldedaten:</strong> Schule, Klasse (Stufe und Buchstabe), Datum, Unterrichtsstunde, Fach, Art des Ausfalls. Diese Angaben beziehen sich nicht auf Sie als Person.</li>
+  <li><strong>Gerätekennung:</strong> eine zufällig erzeugte Zahl, die Ihr Browser speichert (siehe Abschnitt 5). In der Datenbank liegt davon nur ein verschlüsselter Hash. Zweck: dieselbe Stunde nicht doppelt zu zählen und Massen-Einträge zu begrenzen. Der Hash wird nach 60 Tagen automatisch anonymisiert.</li>
+  <li><strong>IP-Adresse:</strong> Wir speichern sie nicht. Aus ihr wird ein Tages-Hash gebildet, um zu viele Meldungen von einem Anschluss zu begrenzen. Dieser Hash wird nach spätestens zwei Tagen automatisch gelöscht. Supabase verarbeitet die IP-Adresse technisch bedingt beim Verbindungsaufbau und in kurzfristigen Betriebsprotokollen.</li>
 </ul>
-<h2>Dienstleister</h2>
-<p>Die Seite wird über GitHub Pages ausgeliefert, die Datenbank liegt bei Supabase im Rechenzentrum Frankfurt am Main. [Angaben zur Auftragsverarbeitung und zu Server-Logs der Anbieter ergänzen]</p>
-<h2>Verantwortlich</h2>
-<p>[Name und ladungsfähige Anschrift eintragen]</p>
-<p>Kontakt: <span data-kontakt></span></p>
+<p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt darin, verlässliche, nicht doppelt gezählte und vor Missbrauch geschützte Zahlen zur Unterrichtsversorgung zu erheben. Die Angabe ist freiwillig. Eine automatisierte Entscheidungsfindung einschließlich Profiling findet nicht statt.</p>
+<p>Bitte tragen Sie in das Feld „Fach“ nur den Namen eines Unterrichtsfachs ein und niemals Namen von Personen. Einträge, die erkennbar Personen nennen, werden abgelehnt oder gelöscht.</p>
+
+<h2>5. Speicherung auf Ihrem Gerät</h2>
+<p>Die Seite speichert im lokalen Speicher Ihres Browsers (localStorage): die zufällige Gerätekennung sowie zuletzt gewählte Schule und Klasse, damit Sie diese nicht jedes Mal neu eingeben müssen. Außerdem legt die Seite eine Kopie ihrer eigenen Dateien ab, damit sie schneller lädt und als App funktioniert. Diese Daten verlassen Ihr Gerät nicht, mit Ausnahme der Gerätekennung beim Absenden einer Meldung.</p>
+<p>Die Speicherung ist unbedingt erforderlich, damit der von Ihnen gewünschte Dienst (eine Meldung abgeben, ohne doppelt zu zählen) funktioniert (§ 25 Abs. 2 Nr. 2 TDDDG). Sie können die Daten jederzeit löschen, indem Sie die Websitedaten in Ihrem Browser löschen.</p>
+
+<h2>6. Hinweis für Lehrkräfte</h2>
+<p>Es werden keine Namen von Lehrkräften erfasst. Wir können jedoch nicht ausschließen, dass aus der Kombination von Schule, Klasse, Datum und Fach intern mittelbar auf eine Lehrkraft geschlossen werden könnte. Deshalb werden diese Einzeldaten nicht veröffentlicht und nicht an Dritte weitergegeben. Öffentlich gezeigt und an Stadt, Schulaufsicht oder Presse übergeben werden ausschließlich zusammengefasste Zahlen, etwa je Schule, je Jahrgang oder je Fach über alle Klassen. Ziel ist eine Aussage über die Unterrichtsversorgung, nicht über einzelne Personen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (Interesse von Eltern und Öffentlichkeit an Transparenz über die Unterrichtsversorgung). Die Einzeldaten werden gelöscht, sobald sie für die Auswertung nicht mehr benötigt werden, spätestens zwei Jahre nach Ende des betreffenden Schuljahres.</p>
+
+<h2>7. Kontakt per E-Mail</h2>
+<p>Wenn Sie uns schreiben, verarbeiten wir Ihre Angaben zur Bearbeitung Ihrer Anfrage (Art. 6 Abs. 1 lit. f DSGVO) und löschen sie, sobald sie nicht mehr benötigt werden.</p>
+
+<h2>8. Ihre Rechte</h2>
+<p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18) und Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Da wir Meldungen keiner Person zuordnen können, können wir einzelne Meldungen in der Regel nur dann finden, wenn Sie uns Schule, Klasse, Datum und Stunde nennen (Art. 11 DSGVO).</p>
+<p>Sie können sich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Landesbeauftragten für Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Kavalleriestraße 2–4, 40213 Düsseldorf, www.ldi.nrw.de.</p>
 </main>
 <footer class="fuss">
 <p>Eine Elterninitiative. Erfasst werden nur Strukturdaten (Schule, Klasse, Datum, Stunde, Fach, Art des Ausfalls), keine Namen von Lehrkräften oder Kindern.</p>
-<p><a href="datenschutz.html">Datenschutz &amp; Impressum</a> · Kontakt: <span data-kontakt></span></p>
+<p><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · Kontakt: <span data-kontakt></span></p>
 </footer>
 <script src="config.js"></script><script src="api.js"></script>
 </body></html>

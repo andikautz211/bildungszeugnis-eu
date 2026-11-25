@@ -1,7 +1,7 @@
 // Service Worker: hält die Seiten für schnelles Laden vor. Zahlen und Meldungen
 // gehen immer direkt an die Datenbank (werden nie zwischengespeichert).
-var VERSION = 'fehlstunden-v2';
-var DATEIEN = ['./', 'index.html', 'melden.html', 'datenschutz.html', 'style.css', 'config.js', 'api.js',
+var VERSION = 'fehlstunden-v3';
+var DATEIEN = ['./', 'index.html', 'melden.html', 'datenschutz.html', 'impressum.html', 'style.css', 'config.js', 'api.js',
                'melden.js', 'dashboard.js', 'icon.svg', 'icon-192.png', 'manifest.webmanifest'];
 
 self.addEventListener('install', function (e) {
