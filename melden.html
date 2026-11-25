@@ -54,6 +54,8 @@
     <label class="beschriftung" for="fach">Fach laut Stundenplan</label>
     <select id="fach" name="fach" required><option value="">Wird geladen …</option></select>
     <input id="fach-frei" name="fach_frei" maxlength="25" autocomplete="off" placeholder="Fach eintippen, z. B. Darstellen und Gestalten" hidden>
+    <label class="schalter" id="je-stunde-feld" hidden><input type="checkbox" id="je-stunde"> <span>Verschiedene Fächer: Fach für jede Stunde einzeln angeben</span></label>
+    <div id="fach-liste" class="fach-liste" hidden></div>
   </div>
 
   <fieldset class="feld">

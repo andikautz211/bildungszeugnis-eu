@@ -170,3 +170,10 @@ mark.platzhalter { background: #ffe58a; color: #1b1f24; padding: 0 .2em; border-
   border: 1.5px solid var(--akzent); background: var(--flaeche); color: var(--akzent); font: inherit; font-weight: 700; font-size: .95rem;
   text-decoration: none; cursor: pointer; line-height: 1.25; }
 .knopf-zweit:hover { background: var(--bg); }
+
+/* Fach je Stunde */
+.schalter { display: flex; gap: 10px; align-items: flex-start; margin-top: 6px; font-size: .95rem; cursor: pointer; }
+.schalter input { width: 20px; height: 20px; margin: 2px 0 0; flex: none; accent-color: var(--akzent); }
+.fach-liste { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.fach-zeile { display: grid; grid-template-columns: 4.5em 1fr; gap: 10px; align-items: center; }
+.fach-zeile span { font-weight: 700; font-variant-numeric: tabular-nums; }

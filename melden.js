@@ -8,6 +8,10 @@
   var datum = document.getElementById('datum'), fach = document.getElementById('fach'), fachFrei = document.getElementById('fach-frei');
   var stundenBox = document.getElementById('stunden'), meldung = document.getElementById('meldung');
   var knopf = document.getElementById('absenden');
+  var jeStunde = document.getElementById('je-stunde'), jeStundeFeld = document.getElementById('je-stunde-feld');
+  var fachListe = document.getElementById('fach-liste');
+  var FAECHER = [], fachJeStunde = {};
+  var WEISS_NICHT = 'Sonstiges';
   var oberstufe = {};
 
   function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
@@ -49,6 +53,33 @@
     if (!fachFrei.hidden) fachFrei.focus();
   });
 
+  // Fach je Stunde: bei mehreren Stunden kann jede Stunde ein eigenes Fach bekommen
+  function gewaehlteStunden() {
+    return Array.from(form.querySelectorAll('input[name=stunden]:checked')).map(function (i) { return +i.value; });
+  }
+  function jeStundeAufbauen() {
+    var stunden = gewaehlteStunden();
+    jeStundeFeld.hidden = stunden.length < 2;
+    var an = jeStunde.checked && stunden.length >= 2;
+    fachListe.hidden = !an;
+    fach.hidden = an;
+    fachFrei.hidden = an || fach.value !== ANDERES;
+    if (!an) return;
+    fachListe.replaceChildren();
+    stunden.forEach(function (st) {
+      var zeile = el('label', 'fach-zeile'), sel = el('select');
+      sel.appendChild(el('option', null, 'Bitte wählen')); sel.firstChild.value = '';
+      FAECHER.forEach(function (f) { sel.appendChild(el('option', null, f)); });
+      var w = el('option', null, 'Weiß nicht / Sonstiges'); w.value = WEISS_NICHT; sel.appendChild(w);
+      sel.value = fachJeStunde[st] || '';
+      sel.addEventListener('change', function () { fachJeStunde[st] = sel.value; });
+      zeile.append(el('span', null, st + '. Std.'), sel);
+      fachListe.appendChild(zeile);
+    });
+  }
+  stundenBox.addEventListener('change', jeStundeAufbauen);
+  jeStunde.addEventListener('change', jeStundeAufbauen);
+
   // Formular aufbauen (Schulen, Fächer und Regeln kommen aus der Datenbank)
   A.rpc('formular_daten').then(function (d) {
     schule.replaceChildren(el('option', null, 'Bitte wählen'));
@@ -59,8 +90,10 @@
     });
     fach.replaceChildren(el('option', null, 'Bitte wählen'));
     fach.firstChild.value = '';
+    FAECHER = d.faecher;
     d.faecher.forEach(function (f) { fach.appendChild(el('option', null, f)); });
     var andere = el('option', null, 'Anderes Fach eintippen …'); andere.value = ANDERES; fach.appendChild(andere);
+    var weiss = el('option', null, 'Weiß nicht / mehrere Fächer'); weiss.value = WEISS_NICHT; fach.appendChild(weiss);
     for (var s = 1; s <= d.max_stunde; s++) stundenBox.appendChild(chip('stunden', s, s + '.'));
     var heute = new Date(d.heute + 'T12:00:00');
     datum.max = iso(heute);
@@ -95,7 +128,8 @@
     ev.preventDefault();
     var stufe = gewaehlteStufe(), oberstufig = /^(EF|Q1|Q2)$/.test(stufe);
     var zugWert = oberstufig ? '' : zug.value.trim().toLowerCase();
-    var stunden = Array.from(form.querySelectorAll('input[name=stunden]:checked')).map(function (i) { return +i.value; });
+    var stunden = gewaehlteStunden();
+    var einzeln = jeStunde.checked && stunden.length >= 2;
     var kat = form.querySelector('input[name=kategorie]:checked');
     var anderes = fach.value === ANDERES;
     var fehlt = [];
@@ -104,17 +138,28 @@
     if (stufe && !oberstufig && !/^[a-z]{1,2}$/.test(zugWert)) fehlt.push('Klassenbuchstaben eingeben, z. B. a.');
     if (!datum.value) fehlt.push('Datum wählen.');
     if (!stunden.length) fehlt.push('Mindestens eine Stunde antippen.');
-    if (!fach.value || (anderes && !fachFrei.value.trim())) fehlt.push('Fach auswählen oder eintippen.');
+    if (einzeln) {
+      if (stunden.some(function (st) { return !fachJeStunde[st]; })) fehlt.push('Für jede Stunde ein Fach wählen.');
+    } else if (!fach.value || (anderes && !fachFrei.value.trim())) fehlt.push('Fach auswählen oder eintippen.');
     if (!kat) fehlt.push('Angeben, was passiert ist.');
     if (fehlt.length) return zeigen('fehler', 'Bitte noch ergänzen:', fehlt);
 
     knopf.disabled = true; knopf.textContent = 'Wird gesendet …';
     try {
-      var r = await A.rpc('stunde_melden', {
-        p_schule: schule.value, p_stufe: stufe, p_zug: zugWert, p_datum: datum.value, p_stunden: stunden,
-        p_fach: anderes ? 'Sonstiges' : fach.value, p_fach_frei: anderes ? fachFrei.value.trim() : null,
-        p_kategorie: kat.value, p_geraet: A.geraet()
-      });
+      // Stunden nach Fach gruppieren: eine Meldung je Fach
+      var gruppen = {};
+      if (einzeln) stunden.forEach(function (st) { (gruppen[fachJeStunde[st]] = gruppen[fachJeStunde[st]] || []).push(st); });
+      else gruppen[anderes ? 'Sonstiges' : fach.value] = stunden;
+      var r = null;
+      for (var f in gruppen) {
+        var teil = await A.rpc('stunde_melden', {
+          p_schule: schule.value, p_stufe: stufe, p_zug: zugWert, p_datum: datum.value, p_stunden: gruppen[f],
+          p_fach: f, p_fach_frei: (!einzeln && anderes) ? fachFrei.value.trim() : null,
+          p_kategorie: kat.value, p_geraet: A.geraet()
+        });
+        if (r) r.stunden = r.stunden.concat(teil.stunden); else r = teil;
+      }
+      r.stunden.sort(function (a, b) { return a.stunde - b.stunde; });
       A.schreiben('klasse', JSON.stringify({ schule: schule.value, stufe: stufe, zug: zugWert }));
       var tag = new Date(r.datum + 'T12:00:00').toLocaleDateString('de-DE');
       var punkte = r.stunden.map(function (s) {
@@ -126,6 +171,7 @@
       zeigen('erfolg', alleDoppelt ? 'Diese Meldung hatten Sie schon abgegeben.' : 'Danke! Gespeichert für ' + r.klasse + ' am ' + tag + '.', punkte);
       form.querySelectorAll('input[name=stunden], input[name=kategorie]').forEach(function (i) { i.checked = false; });
       fach.value = ''; fachFrei.value = ''; fachFrei.hidden = true;
+      jeStunde.checked = false; fachJeStunde = {}; jeStundeAufbauen();
     } catch (e) {
       zeigen('fehler', e.message);
     } finally {
