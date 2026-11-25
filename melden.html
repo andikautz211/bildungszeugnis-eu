@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://*.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#1f4e79">
+<title>Stunde melden</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="seite-melden">
+<header class="kopf"><a href="./" class="marke" data-titel></a>
+<nav><a href="./">Dashboard</a><a href="melden.html" class="knopf-klein">Stunde melden</a></nav></header>
+<main>
+<h1>Stunde melden</h1>
+<div id="meldung" class="hinweis" role="status" hidden></div>
+
+<form id="meldeformular" class="formular" novalidate>
+  <label class="feld">
+    <span class="beschriftung">Klassen-Code</span>
+    <input id="code" name="code" required autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="z. B. RS-EU-7A-26-K4P9X2">
+    <small id="code-info" class="info">Den Code bekommen Sie in der Eltern-Gruppe Ihrer Klasse. Er wird auf diesem Gerät gemerkt.</small>
+  </label>
+
+  <fieldset class="feld">
+    <legend class="beschriftung">Datum</legend>
+    <div class="schnellwahl" id="datum-schnell">
+      <button type="button" data-tage="0">Heute</button>
+      <button type="button" data-tage="1">Gestern</button>
+    </div>
+    <input type="date" id="datum" name="datum" required>
+  </fieldset>
+
+  <fieldset class="feld">
+    <legend class="beschriftung">Unterrichtsstunde(n) <small>mehrere antippbar, z. B. Doppelstunde</small></legend>
+    <div class="stunden" id="stunden"></div>
+  </fieldset>
+
+  <label class="feld">
+    <span class="beschriftung">Fach laut Stundenplan</span>
+    <select id="fach" name="fach" required><option value="">Wird geladen …</option></select>
+  </label>
+
+  <fieldset class="feld">
+    <legend class="beschriftung">Was ist passiert?</legend>
+    <div class="kategorien">
+      <label class="kategorie kat-ausfall"><input type="radio" name="kategorie" value="ausfall"><span><strong>Ersatzloser Ausfall</strong><small>Stunde entfällt komplett / früherer Schulschluss</small></span></label>
+      <label class="kategorie kat-aufsicht"><input type="radio" name="kategorie" value="aufsicht"><span><strong>Aufsicht / Stillarbeit ohne Fachbezug</strong><small>Fachfremde Betreuung ohne Stoffvermittlung</small></span></label>
+      <label class="kategorie kat-vertretung"><input type="radio" name="kategorie" value="vertretung"><span><strong>Fachgerechte Vertretung</strong><small>Regulärer Unterricht durch Vertretungslehrkraft</small></span></label>
+    </div>
+  </fieldset>
+
+  <p class="info">Bitte keine Namen nennen. Es gibt deshalb auch kein Freitextfeld.</p>
+  <button type="submit" class="knopf" id="absenden">Meldung absenden</button>
+</form>
+</main>
+<footer class="fuss">
+<p>Eine Elterninitiative. Erfasst werden nur Strukturdaten (Schule, Klasse, Datum, Stunde, Fach, Art des Ausfalls), keine Namen von Lehrkräften oder Kindern.</p>
+<p><a href="datenschutz.html">Datenschutz &amp; Impressum</a> · Kontakt: <span data-kontakt></span></p>
+</footer>
+<script src="config.js"></script><script src="api.js"></script><script src="melden.js"></script>
+</body></html>

@@ -1,0 +1,147 @@
+:root {
+  --bg: #f6f7f9; --flaeche: #ffffff; --text: #1b1f24; --leise: #5b6470; --linie: #dde1e6;
+  --akzent: #1f4e79; --akzent-text: #ffffff;
+  --ausfall: #c0392b; --aufsicht: #e69b23; --vertretung: #3a8f5c;
+  --fehler-bg: #fdecea; --erfolg-bg: #e8f5ec;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171b; --flaeche: #1e2228; --text: #e8eaed; --leise: #a1a9b3; --linie: #343a42;
+    --akzent: #6aa6dc; --akzent-text: #0d1b28;
+    --ausfall: #e2685b; --aufsicht: #f0b54f; --vertretung: #5fbf85;
+    --fehler-bg: #3b1f1c; --erfolg-bg: #1b3324;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+a { color: var(--akzent); }
+main { max-width: 760px; margin: 0 auto; padding: 16px; }
+h1 { font-size: 1.5rem; line-height: 1.2; margin: .5rem 0 1rem; }
+h2 { font-size: 1.1rem; margin: 0 0 .75rem; }
+small { color: var(--leise); }
+
+.kopf { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--flaeche); border-bottom: 1px solid var(--linie); }
+.marke { font-weight: 700; text-decoration: none; color: var(--text); }
+.kopf nav { display: flex; gap: 14px; align-items: center; }
+.kopf nav a { text-decoration: none; }
+.knopf-klein { background: var(--akzent); color: var(--akzent-text) !important; padding: 6px 12px; border-radius: 999px; font-weight: 600; }
+
+.knopf { display: block; width: 100%; text-align: center; border: 0; border-radius: 12px; padding: 16px;
+  background: var(--akzent); color: var(--akzent-text); font-size: 1.1rem; font-weight: 700; text-decoration: none; cursor: pointer; }
+.knopf:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--aufsicht); outline-offset: 2px; }
+
+/* Dashboard */
+.held { text-align: center; padding: 8px 0 16px; }
+.ueberzeile { margin: 0; color: var(--leise); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; font-size: .8rem; }
+.grosszahl { font-size: 4.5rem; font-weight: 800; line-height: 1; margin: .25rem 0; font-variant-numeric: tabular-nums; }
+.unterzeile { color: var(--leise); margin: 0 0 1rem; }
+.kacheln { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 8px 0 16px; }
+@media (min-width: 640px) { .kacheln { grid-template-columns: repeat(4, 1fr); } }
+.kachel { background: var(--flaeche); border: 1px solid var(--linie); border-radius: 12px; padding: 12px;
+  display: flex; flex-direction: column; gap: 2px; font-size: .85rem; color: var(--leise); }
+.kachel .kz { font-size: 1.6rem; font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; }
+.k-ausfall { border-top: 4px solid var(--ausfall); }
+.k-aufsicht { border-top: 4px solid var(--aufsicht); }
+.k-vertretung { border-top: 4px solid var(--vertretung); }
+.karte { background: var(--flaeche); border: 1px solid var(--linie); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+.balkenliste { display: flex; flex-direction: column; gap: 10px; }
+.zeile-kopf { display: flex; justify-content: space-between; gap: 8px; font-size: .95rem; }
+.zahl { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.balken { display: flex; height: 12px; border-radius: 6px; overflow: hidden; gap: 2px; margin-top: 4px; }
+.seg { display: block; height: 100%; }
+.seg-ausfall { background: var(--ausfall); }
+.seg-aufsicht { background: var(--aufsicht); }
+.seg-vertretung { background: var(--vertretung); }
+.legende { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .85rem; margin: 0 0 4px; }
+.legende i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; }
+.info { color: var(--leise); font-size: .85rem; }
+
+/* Formular */
+.formular { display: flex; flex-direction: column; gap: 18px; }
+.feld { display: flex; flex-direction: column; gap: 6px; border: 0; margin: 0; padding: 0; min-width: 0; }
+.beschriftung { font-weight: 700; padding: 0; }
+input[type=text], input:not([type]), input[type=date], select {
+  font: inherit; font-size: 1.05rem; padding: 12px; border-radius: 10px; border: 1px solid var(--linie);
+  background: var(--flaeche); color: var(--text); width: 100%; }
+#code { text-transform: uppercase; letter-spacing: .05em; }
+.info.ok { color: var(--vertretung); font-weight: 600; }
+.info.falsch { color: var(--ausfall); font-weight: 600; }
+.schnellwahl { display: flex; gap: 8px; }
+.schnellwahl button { flex: 1; font: inherit; padding: 10px; border-radius: 10px; border: 1px solid var(--linie);
+  background: var(--flaeche); color: var(--text); cursor: pointer; }
+.schnellwahl button.aktiv { border-color: var(--akzent); outline: 2px solid var(--akzent); }
+.stunden { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.chip input, .kategorie input { position: absolute; opacity: 0; pointer-events: none; }
+.chip span { display: block; text-align: center; padding: 12px 0; border-radius: 10px; border: 1px solid var(--linie);
+  background: var(--flaeche); font-weight: 700; cursor: pointer; font-variant-numeric: tabular-nums; }
+.chip input:checked + span { background: var(--akzent); color: var(--akzent-text); border-color: var(--akzent); }
+.chip input:focus-visible + span, .kategorie input:focus-visible + span { outline: 3px solid var(--aufsicht); outline-offset: 2px; }
+.kategorien { display: flex; flex-direction: column; gap: 8px; }
+.kategorie span { display: flex; flex-direction: column; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--linie);
+  border-left-width: 6px; background: var(--flaeche); cursor: pointer; }
+.kat-ausfall span { border-left-color: var(--ausfall); }
+.kat-aufsicht span { border-left-color: var(--aufsicht); }
+.kat-vertretung span { border-left-color: var(--vertretung); }
+.kategorie input:checked + span { outline: 3px solid var(--akzent); }
+
+.hinweis { border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; background: var(--flaeche); border: 1px solid var(--linie); }
+.hinweis ul { margin: .4rem 0; padding-left: 1.2rem; }
+.fehler { background: var(--fehler-bg); }
+.erfolg { background: var(--erfolg-bg); }
+
+.fuss { max-width: 760px; margin: 24px auto 0; padding: 16px; color: var(--leise); font-size: .8rem; border-top: 1px solid var(--linie); }
+
+/* ---------- Ergänzungen statische Version ---------- */
+[hidden] { display: none !important; }
+.textknopf { background: none; border: 0; padding: 0; font: inherit; color: var(--akzent); text-decoration: underline; cursor: pointer; }
+.nur-monitor { display: none; }
+body.monitor .nur-monitor { display: revert; }
+body.monitor .nur-normal { display: none; }
+.held .legende { justify-content: center; margin-top: 16px; }
+.held .kacheln { text-align: left; }
+.erklaerung { margin-top: 4px; }
+
+/* Breite Bildschirme: Kennzahlen links, Diagramme rechts im Raster */
+@media (min-width: 1000px) {
+  main.dash { max-width: 1600px; display: grid; grid-template-columns: minmax(320px, 400px) 1fr; gap: 24px; align-items: start; padding: 24px; }
+  .dash .held { position: sticky; top: 16px; text-align: left; padding: 0; }
+  .dash .held .legende { justify-content: flex-start; }
+  .dash .kacheln { grid-template-columns: repeat(2, 1fr); }
+  .karten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .karten .karte { margin: 0; }
+  .dash .erklaerung, .dash #fehler { grid-column: 2; }
+  .fuss { max-width: 1600px; }
+}
+
+/* Monitor-Modus: füllt den ganzen Bildschirm, Schrift wächst mit */
+body.monitor { overflow: hidden; }
+body.monitor .kopf, body.monitor .fuss { display: none; }
+body.monitor main.dash {
+  max-width: none; height: 100vh; padding: 2.5vh 2.5vw; gap: 2vw;
+  display: grid; grid-template-columns: 28vw 1fr; font-size: clamp(14px, 1.15vw, 28px);
+}
+body.monitor .held { position: static; display: flex; flex-direction: column; justify-content: center; gap: .6em; }
+body.monitor .held h1 { font-size: 1.9em; margin: 0; }
+body.monitor .grosszahl { font-size: 7em; margin: 0; }
+body.monitor .kachel { font-size: .8em; padding: .8em; }
+body.monitor .kachel .kz { font-size: 2.2em; }
+body.monitor .info, body.monitor .legende { font-size: .8em; }
+body.monitor .monitor-hinweis { font-size: 1.1em; margin: 0; padding: .6em .8em; border-radius: 10px; background: var(--flaeche); border: 1px solid var(--linie); }
+body.monitor .karten { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 1.5vw; height: 95vh; }
+body.monitor .karte { margin: 0; padding: 1.2em; overflow: hidden; }
+body.monitor .karte h2 { font-size: 1.2em; }
+body.monitor .balkenliste { gap: .7em; }
+body.monitor .balken { height: .8em; }
+body.monitor .zeile-kopf { font-size: .95em; }
+body.monitor .erklaerung { display: none; }
+@media (max-width: 999px) {
+  body.monitor { overflow: auto; }
+  body.monitor main.dash { display: block; height: auto; font-size: 16px; padding: 16px; }
+  body.monitor .karten { display: block; height: auto; }
+  body.monitor .karte { margin-bottom: 12px; }
+}
+body.monitor .grosszahl { font-size: 6em; }
+body.monitor .held .info:not(:last-of-type) { display: none; }
+body.monitor .held { gap: .5em; }

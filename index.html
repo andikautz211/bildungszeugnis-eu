@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://*.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#1f4e79">
+<title>Fehlstunden-Check Euskirchen</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="seite-dashboard">
+<header class="kopf"><a href="./" class="marke" data-titel></a>
+<nav><a href="./">Dashboard</a><a href="melden.html" class="knopf-klein">Stunde melden</a></nav></header>
+<main class="dash" id="dash">
+  <section class="held">
+    <p class="ueberzeile">Schuljahr <span id="schuljahr">…</span> · Euskirchen</p>
+    <h1>Gemeldete Stunden ohne Fachunterricht</h1>
+    <p class="grosszahl" id="grosszahl">–</p>
+    <p class="unterzeile" id="unterzeile">Zahlen werden geladen …</p>
+    <div class="kacheln">
+      <div class="kachel k-ausfall"><span class="kz" id="z-ausfall">–</span><span>Ersatzloser Ausfall</span></div>
+      <div class="kachel k-aufsicht"><span class="kz" id="z-aufsicht">–</span><span>Aufsicht / Stillarbeit ohne Fachbezug</span></div>
+      <div class="kachel k-vertretung"><span class="kz" id="z-vertretung">–</span><span>Fachgerechte Vertretung</span></div>
+      <div class="kachel"><span class="kz" id="z-bestaetigt">–</span><span>von mehreren Eltern bestätigt</span></div>
+    </div>
+    <a href="melden.html" class="knopf nur-normal">Ausgefallene Stunde melden</a>
+    <p class="monitor-hinweis nur-monitor">Melden unter <strong id="adresse"></strong></p>
+    <p class="legende">
+      <span><i class="seg-ausfall"></i>Ersatzloser Ausfall</span>
+      <span><i class="seg-aufsicht"></i>Aufsicht ohne Fachbezug</span>
+      <span><i class="seg-vertretung"></i>Fachgerechte Vertretung</span>
+    </p>
+    <p class="info">Zahl rechts an den Balken: Stunden ohne Fachunterricht, dahinter alle gemeldeten Stunden.</p>
+    <p class="info"><span id="stand"></span> <button type="button" id="monitor-knopf" class="textknopf nur-normal">Monitor-Modus</button><button type="button" id="monitor-aus" class="textknopf nur-monitor">Monitor-Modus beenden</button></p>
+  </section>
+
+  <div class="karten" id="karten">
+    <section class="karte"><h2>Nach Schulen</h2><div id="g-schulen" class="balkenliste"></div></section>
+    <section class="karte"><h2>Nach Klassenstufen</h2><div id="g-jahrgaenge" class="balkenliste"></div></section>
+    <section class="karte"><h2>Am häufigsten betroffene Fächer</h2><div id="g-faecher" class="balkenliste"></div></section>
+    <section class="karte"><h2>Verlauf nach Monaten</h2><div id="g-monate" class="balkenliste"></div></section>
+  </div>
+  <p class="info erklaerung nur-normal">Jede Kombination aus Schule, Klasse, Datum und Stunde wird nur einmal gezählt, weitere Meldungen gelten als Bestätigung. Fächer werden bewusst nicht pro Klasse ausgewiesen, damit keine Rückschlüsse auf einzelne Lehrkräfte möglich sind.</p>
+  <div id="fehler" class="hinweis fehler" role="alert" hidden></div>
+</main>
+<footer class="fuss">
+<p>Eine Elterninitiative. Erfasst werden nur Strukturdaten (Schule, Klasse, Datum, Stunde, Fach, Art des Ausfalls), keine Namen von Lehrkräften oder Kindern.</p>
+<p><a href="datenschutz.html">Datenschutz &amp; Impressum</a> · Kontakt: <span data-kontakt></span></p>
+</footer>
+<script src="config.js"></script><script src="api.js"></script><script src="dashboard.js"></script>
+</body></html>
