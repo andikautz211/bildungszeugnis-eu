@@ -22,10 +22,19 @@
 
 <form id="meldeformular" class="formular" novalidate>
   <label class="feld">
-    <span class="beschriftung">Klassen-Code</span>
-    <input id="code" name="code" required autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="z. B. RS-EU-7A-26-K4P9X2">
-    <small id="code-info" class="info">Den Code bekommen Sie in der Eltern-Gruppe Ihrer Klasse. Er wird auf diesem Gerät gemerkt.</small>
+    <span class="beschriftung">Schule</span>
+    <select id="schule" name="schule" required><option value="">Wird geladen …</option></select>
   </label>
+
+  <fieldset class="feld">
+    <legend class="beschriftung">Klasse</legend>
+    <div class="stufen" id="stufen"></div>
+    <label class="zug" id="zug-feld">
+      <span>Klassenbuchstabe</span>
+      <input id="zug" name="zug" maxlength="2" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="a" inputmode="text">
+    </label>
+    <small class="info">Schule und Klasse werden auf diesem Gerät gemerkt.</small>
+  </fieldset>
 
   <fieldset class="feld">
     <legend class="beschriftung">Datum</legend>
@@ -41,10 +50,11 @@
     <div class="stunden" id="stunden"></div>
   </fieldset>
 
-  <label class="feld">
-    <span class="beschriftung">Fach laut Stundenplan</span>
+  <div class="feld">
+    <label class="beschriftung" for="fach">Fach laut Stundenplan</label>
     <select id="fach" name="fach" required><option value="">Wird geladen …</option></select>
-  </label>
+    <input id="fach-frei" name="fach_frei" maxlength="25" autocomplete="off" placeholder="Fach eintippen, z. B. Darstellen und Gestalten" hidden>
+  </div>
 
   <fieldset class="feld">
     <legend class="beschriftung">Was ist passiert?</legend>
@@ -55,7 +65,7 @@
     </div>
   </fieldset>
 
-  <p class="info">Bitte keine Namen nennen. Es gibt deshalb auch kein Freitextfeld.</p>
+  <p class="info">Bitte keine Namen nennen, auch nicht beim Fach.</p>
   <button type="submit" class="knopf" id="absenden">Meldung absenden</button>
 </form>
 </main>

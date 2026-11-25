@@ -145,3 +145,11 @@ body.monitor .erklaerung { display: none; }
 body.monitor .grosszahl { font-size: 6em; }
 body.monitor .held .info:not(:last-of-type) { display: none; }
 body.monitor .held { gap: .5em; }
+
+/* Klasse: Stufe antippen + Buchstabe */
+.stufen { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.stufen .chip.aus { display: none; }
+.zug { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.zug span { font-weight: 600; white-space: nowrap; }
+.zug input { width: 5em; text-align: center; font-weight: 700; text-transform: lowercase; }
+#fach-frei { margin-top: 4px; }

@@ -23,11 +23,12 @@
 <ul>
   <li>Schule, Klasse, Datum, Unterrichtsstunde, Fach und Art des Ausfalls.</li>
   <li>Eine zufällige, anonyme Gerätekennung aus dem Speicher Ihres Browsers, damit dieselbe Stunde vom selben Gerät nicht mehrfach gezählt wird. In der Datenbank liegt davon nur ein verschlüsselter Hash.</li>
-  <li>Der Klassen-Code wird nur auf Ihrem Gerät gemerkt.</li>
+  <li>Ihre zuletzt gewählte Schule und Klasse werden nur im Speicher Ihres eigenen Browsers gemerkt.</li>
+  <li>Zur Begrenzung von Massen-Einträgen wird aus der IP-Adresse ein Tages-Hash gebildet (die IP-Adresse selbst wird nicht gespeichert). Dieser Hash wird nach spätestens zwei Tagen automatisch gelöscht.</li>
 </ul>
 <h2>Was nicht gespeichert wird</h2>
 <ul>
-  <li>Keine Namen von Lehrkräften, Schülerinnen und Schülern oder Eltern. Es gibt kein Freitextfeld.</li>
+  <li>Keine Namen von Lehrkräften, Schülerinnen und Schülern oder Eltern. Das einzige freie Feld (Fach) lässt nur kurze Fachnamen zu und wird öffentlich nur als „Sonstiges“ gezählt.</li>
   <li>Keine IP-Adressen in der Datenbank, keine Cookies, keine Tracking- oder Analysedienste, keine externen Schriften.</li>
 </ul>
 <h2>Dienstleister</h2>
